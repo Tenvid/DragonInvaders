@@ -493,9 +493,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullets: []
   bulletsContainer: {fileID: 1683864295}
-  bulletLayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &832008239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -966,7 +963,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 15d5ac4aa8eda024684439d3f9abf308, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

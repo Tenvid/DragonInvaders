@@ -9,7 +9,7 @@ public class Main : MonoBehaviour
     public GameObject bulletsContainer;
     Enemy enemy;
 
-    [SerializeField] LayerMask bulletLayer;
+    //[SerializeField] LayerMask bulletLayer;
 
     private void OnEnable()
     {
@@ -39,10 +39,10 @@ public class Main : MonoBehaviour
             bullet.Move();
             //bullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(0));
         }
-        if (enemy.TestCollision(bulletLayer))
-        {
-            Destroy(enemy);
+        //if (enemy.TestCollision(bulletLayer))
+        //{
+        //    Destroy(enemy);
             
-        }
+        //}
     }
 }
