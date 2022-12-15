@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,10 +12,11 @@ public class Player : MonoBehaviour
 
     //Attributes
     [SerializeField] float baseSpeed;
-    [SerializeField] GameObject bulletPrefab;
-    bool canShoot;
-    [SerializeField]  float shootCooldown;
-    float lastShoot;
+    //[SerializeField] GameObject bulletPrefab;
+    bool _canShoot;
+    [SerializeField] float shootCooldown;
+    float _lastShootTime;
+    [SerializeField] int _currentShoot = 0;
 
     //Properties
     public Rigidbody2D Rigidbody
@@ -39,33 +38,49 @@ public class Player : MonoBehaviour
 
     public bool CanShoot
     {
-        get { return canShoot; }
-        set { canShoot = value; }
+        get { return _canShoot; }
+        set { _canShoot = value; }
     }
     public Vector2 movementSpeed
     {
         get { return movement.ReadValue<Vector2>(); }
     }
 
-    public void Move()
+    public int ActualShoot
     {
-        rb.AddForce(new Vector2(baseSpeed * Time.deltaTime * movement.ReadValue<Vector2>().x, 0));
+        get { return _currentShoot; }
+        set
+        {
+            _currentShoot = value;
+            if (_currentShoot < 0)
+                _currentShoot = 0;
+        }
     }
 
-    public void Shoot(List<Bullet> bullets, GameObject bulletsContainer)
+    //Functions
+    public void Move()
     {
-        if (Time.time - lastShoot > shootCooldown)
-            canShoot = true;
+        rb.AddForce(new Vector2(baseSpeed * movement.ReadValue<Vector2>().x * Time.deltaTime, 0));
+    }
 
-        if(Fire.ReadValue<float>() > 0 && canShoot)
+    public void Shoot(List<Bullet> shotBullets, List<Bullet> storedBullets, GameObject bulletsContainer)
+    {
+        if (ActualShoot < Constants.TotalBullets)
         {
-            GameObject bullet = Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y + 0.5f, 0), Quaternion.identity);
-            //bullet.GetComponent<Bullet>();
-            //bullets.Add(Instantiate(bulletPrefab, transform.position, Quaternion.identity));
-            bullet.transform.SetParent(bulletsContainer.transform);
-            bullets.Add(bullet.GetComponent<Bullet>());
-            canShoot = false;
-            lastShoot = Time.time;
+            if (Time.time - _lastShootTime > shootCooldown)
+                _canShoot = true;
+
+            if (Fire.ReadValue<float>() > 0 && _canShoot)
+            {
+                shotBullets.Add(storedBullets[storedBullets.Count - 1]);
+                storedBullets.RemoveAt(storedBullets.Count - 1);
+                shotBullets.Last().transform.position = new Vector3(transform.position.x, transform.position.y + Constants.BulletSpawnDifference, 0);
+                shotBullets.Last().GetComponent<SpriteRenderer>().enabled = true;
+
+                _currentShoot++;
+                _canShoot = false;
+                _lastShootTime = Time.time;
+            }
         }
     }
 }
