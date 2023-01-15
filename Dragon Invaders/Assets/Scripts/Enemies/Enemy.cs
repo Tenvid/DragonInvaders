@@ -1,16 +1,27 @@
 using System;
+using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
     Rigidbody2D rb;
     [SerializeField] float _descenseSpeed;
     [SerializeField] float _horizontalSpeed;
+    bool _hasDied = false;
+    [SerializeField] Sprite _baseSprite;
+    //
 
-    public Rigidbody2D Rigidbody2D
+    public bool HasDied
     {
-        get { return rb; }
-        set { rb = value; }
+        get { return _hasDied; }
+        set { _hasDied = value; }
+    }
+    public Sprite BaseSprite
+    {
+        get { return _baseSprite; }
+        set { _baseSprite = value; }
     }
 
     public bool TestCollision(LayerMask mask)
@@ -20,16 +31,41 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
-    public void SetRigidbody()
+    //
+
+    public void MoveToDead()
     {
-        Rigidbody2D = GetComponent<Rigidbody2D>();
+        this.gameObject.SetActive(false);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            _hasDied = true;
+        }
+    }
+    public void Explode()
+    {
+        GetComponent<Animator>().SetTrigger("isExploding");
+    }
+
+    public void Dead(int index)
+    {
+        if (_hasDied)
+        {
+            //this.gameObject.tag = "Untagged";
+            Main.deadEnemies.Add(this.gameObject);
+            Main.aliveEnemies.RemoveAt(index);
+            this.gameObject.GetComponent<Collider2D>().enabled = false;
+            Main.aliveEnemiesCount--;
+            Main.player.KilledEnemies++;
+            Explode();
+        }
     }
 
     public void Move()
     {
         transform.position = (new Vector3(transform.position.x + Time.deltaTime *  Mathf.Cos(Time.time) * _horizontalSpeed, transform.position.y - _descenseSpeed * Time.deltaTime, 0));
-        //transform.position = new Vector3(Mathf.Clamp(transform.position.x, -1.23f, 1.23f), transform.position.y, transform.position.z);
     }
-
-
 }

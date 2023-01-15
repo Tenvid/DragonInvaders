@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7545661522048872541}
   - component: {fileID: 7545661522048872542}
   - component: {fileID: -8197108792348057110}
+  - component: {fileID: -2183970511306414792}
   m_Layer: 7
   m_Name: Freezer
-  m_TagString: Untagged
+  m_TagString: Freezer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7545661522048872543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -104,14 +105,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.23831238, y: 0.23831238}
+  m_Size: {x: 0.10494236, y: 0.10494236}
   m_EdgeRadius: 0
 --- !u!114 &7545661522048872542
 MonoBehaviour:
@@ -127,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _descenseSpeed: 0.1
   _horizontalSpeed: 0.5
+  _baseSprite: {fileID: 21300000, guid: 44c0fad9721d8f34b999cc9913b8915c, type: 3}
 --- !u!50 &-8197108792348057110
 Rigidbody2D:
   serializedVersion: 4
@@ -148,3 +150,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &-2183970511306414792
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7545661522048872543}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2e5d086a1fda05d4bb467661c682a1fd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -3,16 +3,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Bullet() { }
-
-    public Bullet(Rigidbody2D rb, bool enabled)
-    {
-        this.rb = rb;
-        this.GetComponent<SpriteRenderer>().enabled = enabled;
-    }
-
+    //
     [SerializeField] float riseSpeed;
     [SerializeField] Rigidbody2D rb;
+    bool _hasCollision = false;
+    //
+
+    
 
     public Rigidbody2D Rigidbody2D
     {
@@ -20,25 +17,35 @@ public class Bullet : MonoBehaviour
         set { rb = value; }
     }
 
+
+
+    //
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Freezer") || collision.gameObject.tag == "Limit")
+        { 
+            _hasCollision = true;
+        }
+    }
+
+    public void Collision(List<GameObject> storedBullets, List<GameObject> shotBullets, GameObject player, ref int index)
+    {
+        if (_hasCollision)
+        {
+            this._hasCollision = false;
+            storedBullets.Add(this.gameObject);
+            shotBullets.RemoveAt(index);
+            index--;
+            player.GetComponent<Player>().ActualShoot--;
+            this.gameObject.SetActive(false);
+        }
+    }
+
     public void Move()
     {
         //rb.AddForce(new Vector2(0, riseSpeed * Time.deltaTime));
         transform.position += new Vector3(0, riseSpeed * Time.deltaTime, 0);
-    }
-
-    public bool TestCollision(LayerMask mask)
-    {
-        if (rb.IsTouchingLayers(mask))
-            return true;
-        return false;
-    }
-
-    public Bullet Create(GameObject bulletsContainer)
-    {
-        //GetComponent<Bullet>().Rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-        transform.SetParent(bulletsContainer.transform);
-        enabled = false;
-        return this;
     }
 
     public void SetRigidbody()

@@ -1,39 +1,31 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     //Actions
-    [SerializeField] InputAction movement;
-    [SerializeField] InputAction fire;
-    [SerializeField] Rigidbody2D rb;
+    public InputAction movement;
+    public InputAction fire;
 
     //Attributes
-    [SerializeField] float baseSpeed;
-    //[SerializeField] GameObject bulletPrefab;
     bool _canShoot;
-    [SerializeField] float shootCooldown;
     float _lastShootTime;
+    [SerializeField] float baseSpeed;
+    [SerializeField] float shootCooldown;
     [SerializeField] int _currentShoot = 0;
-
+    int killedEnemies;
+    int totalLifes;
+    [SerializeField] float _powerUpTimer;
+    int _score;
     //Properties
-    public Rigidbody2D Rigidbody
-    {
-        get { return rb; }
-    }
 
-    public InputAction Movement
+    public int Score
     {
-        get { return movement; }
-        set { movement = value; }
-    }
-
-    public InputAction Fire
-    {
-        get { return fire; }
-        set { fire = value; }
+        get; set;
     }
 
     public bool CanShoot
@@ -57,29 +49,78 @@ public class Player : MonoBehaviour
         }
     }
 
-    //Functions
-    public void Move()
+    public int KilledEnemies
     {
-        rb.AddForce(new Vector2(baseSpeed * movement.ReadValue<Vector2>().x * Time.deltaTime, 0));
+        get;
+        set;
     }
 
-    public void Shoot(List<Bullet> shotBullets, List<Bullet> storedBullets, GameObject bulletsContainer)
+    public int TotalLifes
     {
+        get;
+        set;
+    }
+
+    //Functions
+
+    public void DiscountPowerUpTime()
+    {
+        _powerUpTimer -= Time.deltaTime;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Freezer"))
+            SceneManager.LoadScene("GameOverScene", LoadSceneMode.Single);
+        if (collision.gameObject.CompareTag("Limit"))
+            //GetComponent<CharacterController>().Move(- new Vector3(baseSpeed * movement.ReadValue<Vector2>().x * Time.deltaTime, 0, 0));
+            Debug.Log("borde");
+        if (collision.gameObject.CompareTag("powerUp"))
+        {
+            _powerUpTimer = 60;
+        }
+    }
+    //Flips character sprite
+    public void SetOrientation()
+    {
+        if (movement.ReadValue<Vector2>().x > 0)
+            this.GetComponentInChildren<SpriteRenderer>().flipX = true;
+        else if (movement.ReadValue<Vector2>().x < 0)
+            this.GetComponentInChildren<SpriteRenderer>().flipX = false;
+    }
+    public void Move()
+    {
+        //rb.AddForce(new Vector2(baseSpeed * movement.ReadValue<Vector2>().x * Time.deltaTime, 0));
+        GetComponent<Rigidbody2D>().AddForce(new Vector3(baseSpeed * movement.ReadValue<Vector2>().x * Time.deltaTime, 0, 0));
+        //this.transform.position = new Vector3 (GetComponentInChildren<Transform>().position.x, GetComponentInChildren<Transform>().position.y, GetComponentInChildren<Transform>().position.z);
+        SetOrientation();
+    }
+
+    //Makes the player shoot a bullet
+    public void Shoot(List<GameObject> storedBullets, List<GameObject> shotBullet, GameObject bulletPrefab)
+    {
+        //If there are stored bullets
         if (ActualShoot < Constants.TotalBullets)
         {
-            if (Time.time - _lastShootTime > shootCooldown)
+            //Cooldown
+            if (Time.time - _lastShootTime >= Constants.PlayerShootCooldown)
                 _canShoot = true;
 
-            if (Fire.ReadValue<float>() > 0 && _canShoot)
+            //If Fire button is pressed and player can shot
+            if (_canShoot)
             {
-                shotBullets.Add(storedBullets[storedBullets.Count - 1]);
-                storedBullets.RemoveAt(storedBullets.Count - 1);
-                shotBullets.Last().transform.position = new Vector3(transform.position.x, transform.position.y + Constants.BulletSpawnDifference, 0);
-                shotBullets.Last().GetComponent<SpriteRenderer>().enabled = true;
-
-                _currentShoot++;
+                //Makes the player to know that has already shoot
+                
                 _canShoot = false;
                 _lastShootTime = Time.time;
+
+                GameObject bullet = storedBullets[Constants.TotalBullets - ActualShoot - 1];
+                bullet.SetActive(true);
+                bullet.tag = "Bullet";
+                shotBullet.Add(bullet);
+                storedBullets.Remove(bullet);
+                bullet.transform.position = transform.position + new Vector3(0, Constants.BulletSpawnDifference, 0);
+                _currentShoot++;
             }
         }
     }

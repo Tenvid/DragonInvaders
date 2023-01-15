@@ -1,0 +1,291 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2314817446818283006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2314817446818283004}
+  - component: {fileID: 2314817446818283005}
+  - component: {fileID: 2314817446818282993}
+  - component: {fileID: 2314817446818282994}
+  - component: {fileID: 2314817446818282995}
+  - component: {fileID: 2314817446818282992}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2314817446818283004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314817446818283006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &2314817446818283005
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314817446818283006}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: c2121688fecdf004d82a9deb0a846da1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.56, y: 2.56}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!50 &2314817446818282993
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314817446818283006}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 10
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6
+--- !u!61 &2314817446818282994
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314817446818283006}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.04}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.85333335, y: 0.85333335}
+    newSize: {x: 2.56, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.12606758, y: 0.1804424}
+  m_EdgeRadius: 0
+--- !u!114 &2314817446818282995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314817446818283006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c29f94d9858794a9a17b6dfb2cc8a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement:
+    m_Name: Movement
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 162d6aaf-9ae1-4c69-adad-afd7614cacea
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: WASD
+      m_Id: b162138a-f904-4a75-97f6-be58acc8f91f
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 4
+    - m_Name: up
+      m_Id: dbceaf9b-e764-427d-901a-d164690df619
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 492daf88-491d-414f-a1a5-d11e7d939d7d
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: left
+      m_Id: e9af82b5-c985-48b8-9432-cbc21932890a
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: right
+      m_Id: 9c347620-333f-47c3-ba77-40c34672211d
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: Arrows
+      m_Id: a492338c-c418-4bb3-aa89-769868d2bae8
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 084881be-ab0a-4e73-8a2d-577b7b89e8d0
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: down
+      m_Id: a9685bae-0be5-452c-b163-33299af14767
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 0c39f14b-59f8-4fb3-b840-f3aac5337cb9
+      m_Path: <Keyboard>/leftArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: right
+      m_Id: ab71b740-ce12-4ca5-bd38-e7b4fce135c2
+      m_Path: <Keyboard>/rightArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: 
+      m_Id: c1115e80-ae9f-43e2-b15e-f4caa0a7d5c6
+      m_Path: <Gamepad>/leftStick
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 0
+    m_Flags: 0
+  rb: {fileID: 2314817446818282993}
+  fire:
+    m_Name: Fire
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5ff6edd3-c456-4b56-b279-459f9a340156
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 62e76576-49d2-43df-a0ea-d237f4dc0e14
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Fire
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 9583cd76-9dcc-44e0-bc8f-e19276a713df
+      m_Path: <Gamepad>/buttonEast
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Fire
+      m_Flags: 0
+    m_Flags: 0
+  baseSpeed: 500
+  shootCooldown: 1
+  _currentShoot: 0
+--- !u!58 &2314817446818282992
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314817446818283006}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.01, y: 0.07}
+  serializedVersion: 2
+  m_Radius: 0.18

@@ -3,19 +3,20 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public static void MoveBullets(List<Bullet> bulletList)
+    //Moves all bullets
+    public static void MoveBullets(List<GameObject> bulletList)
     {
-        foreach (Bullet bullet in bulletList)
+        for(int i = 0; i < bulletList.Count; i++)
         {
-            bullet.Move();
+            bulletList[i].GetComponent<Bullet>().Move();
         }
     }
-
-    public static void MoveEnemies(List<Enemy> enemyList)
-    {
-        foreach (Enemy enemy in enemyList)
-        {
-            enemy.Move();
-        }
-    }
+    //Moves all enemies
+    //public static void MoveEnemies(List<Enemy> enemyList)
+    //{
+    //    foreach (Enemy enemy in enemyList)
+    //    {
+    //        enemy.Move();
+    //    }
+    //}
 }
