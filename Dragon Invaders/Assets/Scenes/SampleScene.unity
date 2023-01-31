@@ -908,8 +908,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4aba178351784b4db6f2f9e9f812664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotBullets: []
-  storedBullets: []
   bulletsContainer: {fileID: 1683864295}
   enemyContainer: {fileID: 284987924}
   freezerSprite: {fileID: 21300000, guid: 44c0fad9721d8f34b999cc9913b8915c, type: 3}
@@ -2265,6 +2263,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2314817446818283004, guid: f37f832b46aafa948a095dc311a5576c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314817446818283005, guid: f37f832b46aafa948a095dc311a5576c, type: 3}
+      propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2314817446818283005, guid: f37f832b46aafa948a095dc311a5576c, type: 3}

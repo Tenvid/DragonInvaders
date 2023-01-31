@@ -8,16 +8,11 @@ public class Bullet : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     bool _hasCollision = false;
     //
-
-    
-
     public Rigidbody2D Rigidbody2D
     {
         get { return rb; }
         set { rb = value; }
     }
-
-
 
     //
 
@@ -33,12 +28,13 @@ public class Bullet : MonoBehaviour
     {
         if (_hasCollision)
         {
-            this._hasCollision = false;
+            Debug.Log("Bala choca");
+            _hasCollision = false;
             storedBullets.Add(this.gameObject);
             shotBullets.RemoveAt(index);
             index--;
             player.GetComponent<Player>().ActualShoot--;
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 

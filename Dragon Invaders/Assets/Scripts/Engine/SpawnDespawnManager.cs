@@ -8,6 +8,7 @@ public class SpawnDespawnManager : MonoBehaviour
     public static void GenerateAnEnemy(GameObject freezerPrefab, GameObject enemyContainer, List<GameObject> enemies, Vector3 spawnPosition, int enemyPerRow, int rowNumber)
     {
         GameObject enemy = Instantiate(freezerPrefab, spawnPosition, Quaternion.identity);
+        Main.aliveEnemiesCount++;
         enemies.Add(enemy);
         enemy.GetComponent<Enemy>().BaseSprite = enemy.GetComponent<SpriteRenderer>().sprite;
         enemy.transform.SetParent(enemyContainer.transform);
@@ -32,7 +33,8 @@ public class SpawnDespawnManager : MonoBehaviour
                     Main.aliveEnemies.Add(enemy);
                     enemy.transform.position = new Vector3(j * spawnPos.x - Constants.enemyXDifference, i * spawnPos.y, 0);
                     enemy.GetComponent<Collider2D>().enabled = true;
-                    enemy.GetComponent<SpriteRenderer>().sprite = freezerSprite;
+                    enemy.GetComponent<Enemy>().GetComponent<Animator>().SetTrigger("resetEnemySprite");
+                    Main.aliveEnemiesCount++;
 
                 }
             }
@@ -42,20 +44,6 @@ public class SpawnDespawnManager : MonoBehaviour
     public static Vector3 CalculateSpawnPosition(float enemyPerRow, float rowNumber, Vector3 spawnPosition)
     {
         return new Vector3(spawnPosition.x / enemyPerRow, spawnPosition.y / rowNumber, 0);
-    }
-
-    public static void KillEnemies(List<Enemy> enemies, LayerMask bulletLayer, int worldEnemies)
-    {
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            if (enemies[i].TestCollision(bulletLayer))
-            {
-                Destroy(enemies[i].gameObject);
-                enemies.RemoveAt(i);
-                i--;
-                worldEnemies--;
-            }
-        }
     }
 
     //Generates the bullets at the start of the game

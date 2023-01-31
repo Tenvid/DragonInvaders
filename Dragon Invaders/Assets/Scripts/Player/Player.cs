@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     [SerializeField] int _currentShoot = 0;
     int killedEnemies;
     int totalLifes;
-    [SerializeField] float _powerUpTimer;
+    //[SerializeField] float _powerUpTimer;
     int _score;
     //Properties
 
@@ -63,10 +63,10 @@ public class Player : MonoBehaviour
 
     //Functions
 
-    public void DiscountPowerUpTime()
-    {
-        _powerUpTimer -= Time.deltaTime;
-    }
+    //public void DiscountPowerUpTime()
+    //{
+    //    _powerUpTimer -= Time.deltaTime;
+    //}
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
             Debug.Log("borde");
         if (collision.gameObject.CompareTag("powerUp"))
         {
-            _powerUpTimer = 60;
+            //_powerUpTimer = 60;
         }
     }
     //Flips character sprite

@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class Main : MonoBehaviour
 {
-    public List<GameObject> shotBullets = new List<GameObject>();
-    public List<GameObject> storedBullets = new List<GameObject>();
     public static List<GameObject> aliveEnemies = new List<GameObject>();
     public static List<GameObject> deadEnemies = new List<GameObject>();
     public static Player player;
     public static int aliveEnemiesCount = 0;
+    public static List<GameObject> shotBullets = new List<GameObject>();
+    public static List<GameObject> storedBullets = new List<GameObject>();
     public GameObject bulletsContainer;
     public GameObject enemyContainer;
     public Sprite freezerSprite;
@@ -68,7 +68,7 @@ public class Main : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bulletCounterText = $"ShotBullets: {shotBullets.Count}, StoredBullets: {storedBullets.Count}";
+        bulletCounterText = $"ShotBullets: {shotBullets.Count}, StoredBullets: {storedBullets.Count}, AliveEnemies: {aliveEnemies.Count}, DeadEnemies: {deadEnemies.Count}";
         bulletsCounter.text = bulletCounterText;
 
         TextManager.SetScoreText(player.KilledEnemies * Constants.scoreMultiplier, scoreLabel);
@@ -84,23 +84,18 @@ public class Main : MonoBehaviour
         {
             shotBullets[i].GetComponent<Bullet>().Collision(storedBullets, shotBullets, player.gameObject, ref i);
         }
-
-        for(int i = 0; i < aliveEnemies.Count; i++)
-        {
-            aliveEnemies[i].GetComponent<Enemy>().Dead(i);
-        }
         //Moves the enemies and makes them to disappear when a bullet hits
         for (int i = 0; i < aliveEnemies.Count; i++)
         {
             aliveEnemies[i].GetComponent<Enemy>().Move();
+            aliveEnemies[i].GetComponent<Enemy>().Dead(i);
             //SpawnDespawnManager.BulletImpact(player, shotBullets, storedBullets, enemies, i);
         }
-
         //Manages the enemy waves
         if (aliveEnemies.Count < 1)
         {
-            _waveCounter++;
             SpawnDespawnManager.RemoveBullets(storedBullets, shotBullets, player.gameObject);
+            _waveCounter++;
             switch (_waveCounter)
             {
                 case 1:

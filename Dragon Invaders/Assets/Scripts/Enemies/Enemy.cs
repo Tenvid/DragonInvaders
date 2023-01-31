@@ -54,12 +54,15 @@ public class Enemy : MonoBehaviour
     {
         if (_hasDied)
         {
+            SpawnDespawnManager.RemoveBullets(Main.storedBullets, Main.shotBullets, Main.player.gameObject);
+            Debug.Log("Enemigo muere");
             //this.gameObject.tag = "Untagged";
             Main.deadEnemies.Add(this.gameObject);
             Main.aliveEnemies.RemoveAt(index);
             this.gameObject.GetComponent<Collider2D>().enabled = false;
             Main.aliveEnemiesCount--;
             Main.player.KilledEnemies++;
+            _hasDied = false;
             Explode();
         }
     }
