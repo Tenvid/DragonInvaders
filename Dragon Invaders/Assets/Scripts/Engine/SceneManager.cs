@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuButtons : MonoBehaviour
+public class SceneManager : MonoBehaviour
 {
     public void LoadGameScene()
     {
-        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
     }
 
     public void CloseApp()
@@ -17,6 +17,6 @@ public class MainMenuButtons : MonoBehaviour
 
     public void OpenConfigScene()
     {
-        SceneManager.LoadScene("Configuration", LoadSceneMode.Single);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Configuration", LoadSceneMode.Single);
     }
 }

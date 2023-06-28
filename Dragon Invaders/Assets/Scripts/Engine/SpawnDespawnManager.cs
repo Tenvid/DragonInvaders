@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using static PowerUp;
 
@@ -22,21 +21,16 @@ public class SpawnDespawnManager : MonoBehaviour
             Vector3 spawnPos = CalculateSpawnPosition(enemyPerRow, rowNumber, spawnPosition);
             for (int j = 1; j <= enemyPerRow; j++)
             {
-                if (Main.deadEnemies.Count == 0)
-                    GenerateAnEnemy(freezerPrefab, enemyContainer, enemies, new Vector3(j * spawnPos.x - Constants.enemyXDifference, i * spawnPos.y, 0), enemyPerRow, rowNumber);
-                else
-                {
-                    GameObject enemy = Main.deadEnemies.Last();
-                    enemy.SetActive(true);
-                    enemy.GetComponent<Enemy>().HasDied = false;
-                    Main.deadEnemies.Remove(enemy);
-                    Main.aliveEnemies.Add(enemy);
-                    enemy.transform.position = new Vector3(j * spawnPos.x - Constants.enemyXDifference, i * spawnPos.y, 0);
-                    enemy.GetComponent<Collider2D>().enabled = true;
-                    enemy.GetComponent<Enemy>().GetComponent<Animator>().SetTrigger("resetEnemySprite");
-                    Main.aliveEnemiesCount++;
-
-                }
+                //GameObject enemy = Main.deadEnemies.Last();
+                GameObject enemy = Main.enemies.Get();
+                //enemy.SetActive(true);
+                //enemy.GetComponent<Enemy>().HasDied = false;
+                ////Main.deadEnemies.Remove(enemy);
+                //Main.chargedEnemies.Add(enemy);
+                enemy.transform.position = new Vector3(j * spawnPos.x - Constants.enemyXDifference, i * spawnPos.y, 0);
+                //enemy.GetComponent<Collider2D>().enabled = true;
+                //enemy.GetComponent<Enemy>().GetComponent<Animator>().SetTrigger("resetEnemySprite");
+                Main.aliveEnemiesCount++;
             }
         }
     }
@@ -62,18 +56,24 @@ public class SpawnDespawnManager : MonoBehaviour
     }
 
     //Stores all the bullets on screen
-    public static void RemoveBullets(List<GameObject> storedBullets, List<GameObject> shotBullets, GameObject player)
+    public static void RemoveBullets(List<GameObject> shotBullets)
     {
-        while (true)
+        //while (true)
+        //{
+        //    if (shotBullets.Count == 0)
+        //        break;
+        //    GameObject bullet = shotBullets.Last();
+        //    //storedBullets.Add(bullet);
+        //    shotBullets.Remove(bullet);
+        //    bullet.SetActive(false);
+        //}
+
+        foreach (var bullet in shotBullets)
         {
-            if (shotBullets.Count == 0)
-                break;
-            GameObject bullet = shotBullets.Last();
-            storedBullets.Add(bullet);
-            shotBullets.Remove(bullet);
-            bullet.gameObject.SetActive(false);
+            if (bullet.activeSelf)
+                bullet.gameObject.SetActive(false);
         }
-        player.GetComponent<Player>().ActualShoot = 0;
+        Main.player.GetComponent<Player>().ActualShoot = 0;
     }
 
     //Generates a PowerUp when an enemy dies

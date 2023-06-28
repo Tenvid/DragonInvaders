@@ -42,7 +42,11 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            _hasDied = true;
+            Main.aliveEnemiesCount--;
+            Main.player.KilledEnemies++;
+            _hasDied = false;
+            //Explode();
+            Main.enemies.Release(gameObject);
         }
     }
     public void Explode()
@@ -54,16 +58,16 @@ public class Enemy : MonoBehaviour
     {
         if (_hasDied)
         {
-            SpawnDespawnManager.RemoveBullets(Main.storedBullets, Main.shotBullets, Main.player.gameObject);
-            Debug.Log("Enemigo muere");
-            //this.gameObject.tag = "Untagged";
-            Main.deadEnemies.Add(this.gameObject);
-            Main.aliveEnemies.RemoveAt(index);
-            this.gameObject.GetComponent<Collider2D>().enabled = false;
+            //Debug.Log("Enemigo muere");
+            ////this.gameObject.tag = "Untagged";
+            ////Main.deadEnemies.Add(this.gameObject);
+            ////Main.chargedEnemies.RemoveAt(index);
+            //this.gameObject.GetComponent<Collider2D>().enabled = false;
             Main.aliveEnemiesCount--;
             Main.player.KilledEnemies++;
             _hasDied = false;
-            Explode();
+            //Explode();
+            Main.enemies.Release(gameObject);
         }
     }
 

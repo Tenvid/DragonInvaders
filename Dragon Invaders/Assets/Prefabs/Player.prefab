@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2314817446818283004}
   - component: {fileID: 2314817446818283005}
   - component: {fileID: 2314817446818282993}
-  - component: {fileID: 2314817446818282994}
   - component: {fileID: 2314817446818282995}
   - component: {fileID: 2314817446818282992}
   m_Layer: 0
@@ -109,32 +108,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!61 &2314817446818282994
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2314817446818283006}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.04}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.85333335, y: 0.85333335}
-    newSize: {x: 2.56, y: 2.56}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.12606758, y: 0.1804424}
-  m_EdgeRadius: 0
 --- !u!114 &2314817446818282995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +217,6 @@ MonoBehaviour:
       m_Action: Movement
       m_Flags: 0
     m_Flags: 0
-  rb: {fileID: 2314817446818282993}
   fire:
     m_Name: Fire
     m_Type: 0
